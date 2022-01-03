@@ -9,11 +9,16 @@ class HomeScreen extends StatelessWidget{
         leading: Icon(
           Icons.menu,),
         title: Text('MY First App With Flutter',),
-        actions: [Icon(Icons.search),Icon(Icons.notification_important)],
+        actions: [
+          IconButton(onPressed:onNotification , icon:Icon(Icons.search)),
+          IconButton(onPressed: (){print("hello world");}, icon:  Icon(Icons.notification_important))
+         ],
         centerTitle: false,
         elevation: 20.0,
       ) ,
     );
   }
-
+  void onNotification(){
+    print("notification");
+  }
 }
