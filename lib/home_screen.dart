@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget{
         title: Text('MY First App With Flutter',),
         actions: [Icon(Icons.search),Icon(Icons.notification_important)],
         centerTitle: false,
-        elevation: 15.0,
+        elevation: 20.0,
       ) ,
     );
   }
