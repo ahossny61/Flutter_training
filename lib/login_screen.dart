@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget{
                  Text('Login'
                  ,style: TextStyle(
                        fontSize: 40,
-                       fontWeight:FontWeight.bold ),
+                       fontWeight:FontWeight.w700 ),
                  ),
                  SizedBox(height: 20.0,),
                  TextFormField(
