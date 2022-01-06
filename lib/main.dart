@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:train_step3/home_screen.dart';
 import 'package:train_step3/login_screen.dart';
 import 'package:train_step3/messenger_screen.dart';
+import 'package:train_step3/user_screen.dart';
 
 void main() {
   MyApp app=MyApp();
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       //home:HomeScreen(),
-      home:MessengerScreen()
+      home:UserScreen()
     );
 
   }
