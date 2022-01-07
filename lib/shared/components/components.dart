@@ -24,6 +24,7 @@ Widget defaultButton({
     );
 
 Widget defaultFormField({
+  bool isSecure=false,
   required String label,
   required TextEditingController controller,
   required TextInputType type,
@@ -31,17 +32,20 @@ Widget defaultFormField({
   void Function(String value)? onChangedFunc,
   required  String?Function(String ?value) onValidateFunc,
   required IconData prefixIcon,
-
+  IconData? suffixIcon,
 
 }) =>
     TextFormField(
+      obscureText:isSecure ,
       controller: controller,
       keyboardType: type,
       decoration: InputDecoration(
           labelText: label,
           //border: InputBorder.none
           border: OutlineInputBorder(),
-          prefixIcon: Icon(prefixIcon)),
+          prefixIcon: Icon(prefixIcon),
+          suffixIcon: suffixIcon!=null?Icon(suffixIcon):null,
+      ),
       onFieldSubmitted: onSubmitFunc,
       onChanged: onChangedFunc,
       style: TextStyle(fontSize: 20.0, color: Colors.blue),

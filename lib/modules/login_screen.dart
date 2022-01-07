@@ -57,6 +57,9 @@ class LoginScreen extends StatelessWidget{
                          return null;
                        },
                        prefixIcon: Icons.lock,
+                       suffixIcon: Icons.remove_red_eye,
+                     isSecure: true,
+
                    ),
                    SizedBox(
                      height: 10.0,
