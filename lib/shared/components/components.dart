@@ -33,6 +33,7 @@ Widget defaultFormField({
   required  String?Function(String ?value) onValidateFunc,
   required IconData prefixIcon,
   IconData? suffixIcon,
+  void Function()? suffixPressedFunc,
 
 }) =>
     TextFormField(
@@ -44,7 +45,10 @@ Widget defaultFormField({
           //border: InputBorder.none
           border: OutlineInputBorder(),
           prefixIcon: Icon(prefixIcon),
-          suffixIcon: suffixIcon!=null?Icon(suffixIcon):null,
+          suffixIcon: suffixIcon!=null?IconButton(
+               onPressed: suffixPressedFunc,
+              icon: Icon(suffixIcon)
+          ):null,
       ),
       onFieldSubmitted: onSubmitFunc,
       onChanged: onChangedFunc,

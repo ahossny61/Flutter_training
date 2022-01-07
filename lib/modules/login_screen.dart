@@ -3,17 +3,24 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:train_step3/shared/components/components.dart';
 
-class LoginScreen extends StatelessWidget{
+class LoginScreen extends StatefulWidget{
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var emailController=TextEditingController();
   var passController=TextEditingController();
   var formKey=GlobalKey<FormState>();
+  bool isSecure=true;
+  //IconData eyeIcon=Icons.remove_red_eye;
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
        leading: Icon(Icons.menu,),
            title:Text('Login Screen'),
-
      ),
      body: Container(
        child: Padding(
@@ -57,8 +64,14 @@ class LoginScreen extends StatelessWidget{
                          return null;
                        },
                        prefixIcon: Icons.lock,
-                       suffixIcon: Icons.remove_red_eye,
-                     isSecure: true,
+                       suffixIcon: isSecure?Icons.visibility:Icons.visibility_off,
+                       isSecure: isSecure,
+                       suffixPressedFunc: (){
+                         setState(() {
+                           isSecure=!isSecure;
+                         });
+
+                       }
 
                    ),
                    SizedBox(
@@ -89,5 +102,4 @@ class LoginScreen extends StatelessWidget{
      ),
    );
   }
-
 }
