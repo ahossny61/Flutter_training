@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:train_step3/shared/components/components.dart';
 
 class LoginScreen extends StatelessWidget{
   var emailController=TextEditingController();
@@ -65,20 +66,11 @@ class LoginScreen extends StatelessWidget{
                      color: Colors.blue
                    ),
                  ),
-                 Container(
-                   width: double.infinity,
-                   child: MaterialButton(onPressed: (){
-                     print(emailController.text+" + "+passController.text);
-                   },
-                   child: Text(
-                     'Login',
+                 SizedBox(
+                   height: 10.0,
+                 ),
+                 defaultButton(function: (){print(emailController);}, text: 'login',radius: 10.0),
 
-                   ),
-                   color: Colors.blue,),
-                 )
-                 , SizedBox(
-             height: 10.0,
-       ),
                  Row(
                    mainAxisAlignment: MainAxisAlignment.center,
                    children: [
