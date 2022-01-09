@@ -3,83 +3,96 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:train_step3/shared/components/components.dart';
 
-class LoginScreen extends StatelessWidget{
+class LoginScreen extends StatefulWidget{
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var emailController=TextEditingController();
   var passController=TextEditingController();
+  var formKey=GlobalKey<FormState>();
+  bool isSecure=true;
+  //IconData eyeIcon=Icons.remove_red_eye;
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
        leading: Icon(Icons.menu,),
            title:Text('Login Screen'),
-
      ),
      body: Container(
        child: Padding(
          padding: const EdgeInsets.all(20.0),
          child: Center(
            child: SingleChildScrollView(
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: [
-                 Text('Login'
-                 ,style: TextStyle(
-                       fontSize: 40,
-                       fontWeight:FontWeight.w700 ),
-                 ),
-                 SizedBox(height: 20.0,),
-                 TextFormField(
-                   controller: emailController,
-                   keyboardType:TextInputType.emailAddress ,
-                   decoration: InputDecoration(
-                     labelText: 'Email',
-                     //border: InputBorder.none
-                     border: OutlineInputBorder(),
-                     prefixIcon: Icon(Icons.email)
+             child: Form(
+               key: formKey,
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Text('Login'
+                   ,style: TextStyle(
+                         fontSize: 40,
+                         fontWeight:FontWeight.w700 ),
                    ),
-                   style: TextStyle(
-                     fontSize: 20.0,
-                     color: Colors.blue
+                   SizedBox(height: 20.0,),
+                   defaultFormField(
+                       label: 'Email',
+                       controller: emailController,
+                       type: TextInputType.emailAddress,
+                       onValidateFunc: (value){
+                         if(value!.isEmpty){
+                           return 'Email must not be empty!';
+                         }
+                         return null;
+                       },
+                       prefixIcon: Icons.email,
                    ),
-                  /* onFieldSubmitted: (String value){
-                     print(value);
-                   },
-                   onChanged: (String v){},
-                   */
-
-                 ),
-                 SizedBox(
-                   height: 10.0,
-                 ),
-                 TextFormField(
-                   controller: passController,
-                   obscureText: true,
-                   keyboardType: TextInputType.visiblePassword,
-                   decoration: InputDecoration(
-                     labelText: 'Password',
-                     border: OutlineInputBorder(),
-                     prefixIcon: Icon(Icons.lock),
-                     suffixIcon: Icon(Icons.remove_red_eye)
+                   SizedBox(
+                     height: 10.0,
                    ),
-                   style: TextStyle(
-                     fontSize: 20.0,
-                     color: Colors.blue
+                   defaultFormField(
+                       label: 'Password',
+                       controller: passController,
+                       type: TextInputType.visiblePassword,
+                       onValidateFunc: (value){
+                         if(value!.isEmpty){
+                           return 'Password must not be epmty';
+                         }
+                         return null;
+                       },
+                       prefixIcon: Icons.lock,
+                       suffixIcon: isSecure?Icons.visibility:Icons.visibility_off,
+                       isSecure: isSecure,
+                       suffixPressedFunc: (){
+                         setState(() {
+                           isSecure=!isSecure;
+                         });
+                       }
                    ),
-                 ),
-                 SizedBox(
-                   height: 10.0,
-                 ),
-                 defaultButton(function: (){print(emailController);}, text: 'login',radius: 10.0),
-
-                 Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                     Text('Don\'t have an account ?',
-                     ),
-                     TextButton(onPressed: (){ }, child:Text('Register Now'))
-                   ],
-                 )
-               ],
+                   SizedBox(
+                     height: 10.0,
+                   ),
+                   defaultButton(
+                       function: (){
+                         if(formKey.currentState!.validate()){
+                           print(emailController.text);
+                         }},
+                       text: 'login',
+                       radius: 10.0
+                   ),
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Text('Don\'t have an account ?',
+                       ),
+                       TextButton(onPressed: (){ }, child:Text('Register Now'))
+                     ],
+                   )
+                 ],
+               ),
              ),
            ),
          ),
@@ -87,5 +100,4 @@ class LoginScreen extends StatelessWidget{
      ),
    );
   }
-
 }

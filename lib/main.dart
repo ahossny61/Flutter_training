@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:train_step3/modules/counter_screen.dart';
+import 'package:train_step3/modules/counter_screen/counter_screen.dart';
 import 'package:train_step3/modules/home_screen.dart';
 import 'package:train_step3/modules/login_screen.dart';
 import 'package:train_step3/modules/messenger_screen.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       //home:HomeScreen(),
-      home:LoginScreen()
+      home:CounterScreen()
     );
 
   }
