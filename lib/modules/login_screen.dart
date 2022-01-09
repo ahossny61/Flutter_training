@@ -70,9 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          setState(() {
                            isSecure=!isSecure;
                          });
-
                        }
-
                    ),
                    SizedBox(
                      height: 10.0,
